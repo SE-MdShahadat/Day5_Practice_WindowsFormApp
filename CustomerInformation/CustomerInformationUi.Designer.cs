@@ -132,6 +132,7 @@
             this.accountNoTextBox.Name = "accountNoTextBox";
             this.accountNoTextBox.Size = new System.Drawing.Size(199, 22);
             this.accountNoTextBox.TabIndex = 11;
+            this.accountNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.accountNoTextBox_KeyPress);
             // 
             // addressTextBox
             // 
@@ -153,6 +154,7 @@
             this.contactNoTextBox.Name = "contactNoTextBox";
             this.contactNoTextBox.Size = new System.Drawing.Size(199, 22);
             this.contactNoTextBox.TabIndex = 11;
+            this.contactNoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNoTextBox_KeyPress);
             // 
             // lastNameTextBox
             // 

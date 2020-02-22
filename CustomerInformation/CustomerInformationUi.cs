@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,38 +36,66 @@ namespace CustomerInformation
             int emptyCheckStatus = 0;
             try
             {
+                //Username validation :exists, empty
                 if (!String.IsNullOrWhiteSpace(userNameTextBox.Text))
                 {
-                    emptyCheckStatus ++;
+                    if (userNames.Contains(userNameTextBox.Text)==true)
+                    {
+                        userNameLabel.Text = "Username already exists!";                        
+                    }
+                    else emptyCheckStatus++;                   
                 }
-                else
-                {
-                    userNameLabel.Text = "User name can't be empty!";
-                }
+                else userNameLabel.Text = "Username can't be empty!";
+                
+                //Contact no valiadation :exists, empty, length, numeric
                 if (!String.IsNullOrWhiteSpace(contactNoTextBox.Text))
                 {
-                    emptyCheckStatus ++;
+                    if (contactNoTextBox.Text.Length == 11)
+                    {
+                        if (contactNos.Contains(contactNoTextBox.Text) == true)
+                        {
+                            contactLabel.Text = "Contact already exists!";
+                        }
+                        else emptyCheckStatus++;
+                    }
+                    else contactLabel.Text = "Contact no should be 11 digit!";
+                    
                 }
-                else
-                {
-                    contactLabel.Text = "Contact can't be empty!";
-                }
+                else contactLabel.Text = "Contact can't be empty!";
+
+                //Email valiadation :exists, empty, format
                 if (!String.IsNullOrWhiteSpace(emailTextBox.Text))
                 {
-                    emptyCheckStatus ++;
+                    string email = emailTextBox.Text;
+                    if (IsValidEmail(email) == true)
+                    {
+                        if (emails.Contains(emailTextBox.Text))
+                        {
+                            emailLabel.Text = "Email already exists!";
+                        }
+                        else emptyCheckStatus++;
+                    }
+                    else emailLabel.Text = "Email format is not valid!";
+
                 }
-                else
-                {
-                    emailLabel.Text = "Email can't be empty!";
-                }
+                else emailLabel.Text = "Email can't be empty!";
+
+                //Account no valiadation :exists, empty, length, numeric
                 if (!String.IsNullOrWhiteSpace(accountNoTextBox.Text))
                 {
-                    emptyCheckStatus ++;
+                    if (accountNoTextBox.Text.Length == 9)
+                    {
+                        if (accountNos.Contains(accountNoTextBox.Text) == true)
+                        {
+                            accountNoLabel.Text = "Account number already exists!";
+                        }
+                        else emptyCheckStatus++;
+                    } else accountNoLabel.Text = "Account no should be 9 digit!";
+                    
                 }
-                else
-                {
-                    accountNoLabel.Text = "Account number can't be empty!";
-                }
+                else accountNoLabel.Text = "Account number can't be empty!";
+
+
                 if (emptyCheckStatus ==4)
                 {
                     AddDataToList();
@@ -104,19 +133,27 @@ namespace CustomerInformation
 
         private void ShowButton_Click(object sender, EventArgs e)
         {
-            string displayMessage = "SL  ||  Username       ||    Frist Name     ||    Last Name      ||    Contact No  ||   Email       ||   Address        ||    Account No     ||   Balance     \n\n\n";
-            int i = 0;
-            foreach(string username in userNames)
+            try
             {
-                displayMessage = displayMessage + (i + 1)+ "    ||" + " " + username + "    ||   " + firstNames[i] + "  ||   " + lastNames[i] + "   ||   " + contactNos[i] + " || " + emails[i] + "     ||   " + addresses[i] + "   ||   " + accountNos[i] + "   ||    " + balances[i]+"\n";
-                i++;
+                string displayMessage = "SL  ||  Username       ||    Frist Name     ||    Last Name      ||    Contact No  ||   Email       ||   Address        ||    Account No     ||   Balance     \n\n\n";
+                int i = 0;
+                foreach (string username in userNames)
+                {
+                    displayMessage = displayMessage + (i + 1) + "    ||" + " " + username + "    ||   " + firstNames[i] + "  ||   " + lastNames[i] + "   ||   " + contactNos[i] + " || " + emails[i] + "     ||   " + addresses[i] + "   ||   " + accountNos[i] + "   ||    " + balances[i] + "\n";
+                    i++;
+                }
+                displayRichTextBox.Text = displayMessage;
             }
-            displayRichTextBox.Text = displayMessage;
+            catch(Exception excaption)
+            {
+                MessageBox.Show(excaption.Message);
+            }
+            
         }
 
         private void BalanceButton_Click(object sender, EventArgs e)
         {
-            //double blance = 0;
+            
             amountTextBox.Clear();
             int i = 0;
             foreach(string accountNo in accountNos)
@@ -159,6 +196,32 @@ namespace CustomerInformation
                 }
                 i++;
             }
+        }
+
+        private void contactNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Char chr = e.KeyChar;
+            if(!Char.IsDigit(chr) && chr != 8)
+            {
+                e.Handled = true;
+                contactLabel.Text = "Contact no should be numeric!";
+            }
+        }
+
+        private void accountNoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Char chr = e.KeyChar;
+            if(!Char.IsDigit(chr)&& chr != 8)
+            {
+                e.Handled = true;
+                accountNoLabel.Text = "Account no should be numeric!";
+            }
+        }
+        private bool IsValidEmail(string email)
+        {
+            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(email);
         }
     }
 }
