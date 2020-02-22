@@ -58,6 +58,9 @@
             this.WithdrawButton = new System.Windows.Forms.Button();
             this.BalanceButton = new System.Windows.Forms.Button();
             this.displayRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.accountNumberLabel = new System.Windows.Forms.Label();
+            this.accountActionInfoLabel = new System.Windows.Forms.Label();
+            this.customerActionInfoLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +68,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Controls.Add(this.customerActionInfoLabel);
             this.groupBox1.Controls.Add(this.ShowButton);
             this.groupBox1.Controls.Add(this.SaveButton);
             this.groupBox1.Controls.Add(this.accountNoTextBox);
@@ -158,6 +162,7 @@
             // accountNoLabel
             // 
             this.accountNoLabel.AutoSize = true;
+            this.accountNoLabel.ForeColor = System.Drawing.Color.Red;
             this.accountNoLabel.Location = new System.Drawing.Point(298, 227);
             this.accountNoLabel.Name = "accountNoLabel";
             this.accountNoLabel.Size = new System.Drawing.Size(0, 17);
@@ -166,6 +171,7 @@
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
+            this.emailLabel.ForeColor = System.Drawing.Color.Red;
             this.emailLabel.Location = new System.Drawing.Point(298, 174);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(0, 17);
@@ -174,6 +180,7 @@
             // contactLabel
             // 
             this.contactLabel.AutoSize = true;
+            this.contactLabel.ForeColor = System.Drawing.Color.Red;
             this.contactLabel.Location = new System.Drawing.Point(298, 146);
             this.contactLabel.Name = "contactLabel";
             this.contactLabel.Size = new System.Drawing.Size(0, 17);
@@ -182,6 +189,7 @@
             // userNameLabel
             // 
             this.userNameLabel.AutoSize = true;
+            this.userNameLabel.ForeColor = System.Drawing.Color.Red;
             this.userNameLabel.Location = new System.Drawing.Point(298, 59);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(0, 17);
@@ -257,6 +265,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox2.Controls.Add(this.accountActionInfoLabel);
+            this.groupBox2.Controls.Add(this.accountNumberLabel);
             this.groupBox2.Controls.Add(this.BalanceButton);
             this.groupBox2.Controls.Add(this.WithdrawButton);
             this.groupBox2.Controls.Add(this.DepositButton);
@@ -339,6 +349,35 @@
             this.displayRichTextBox.TabIndex = 12;
             this.displayRichTextBox.Text = "";
             // 
+            // accountNumberLabel
+            // 
+            this.accountNumberLabel.AutoSize = true;
+            this.accountNumberLabel.ForeColor = System.Drawing.Color.Red;
+            this.accountNumberLabel.Location = new System.Drawing.Point(15, 104);
+            this.accountNumberLabel.Name = "accountNumberLabel";
+            this.accountNumberLabel.Size = new System.Drawing.Size(0, 17);
+            this.accountNumberLabel.TabIndex = 17;
+            // 
+            // accountActionInfoLabel
+            // 
+            this.accountActionInfoLabel.AutoSize = true;
+            this.accountActionInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accountActionInfoLabel.ForeColor = System.Drawing.Color.Lime;
+            this.accountActionInfoLabel.Location = new System.Drawing.Point(18, 263);
+            this.accountActionInfoLabel.Name = "accountActionInfoLabel";
+            this.accountActionInfoLabel.Size = new System.Drawing.Size(0, 20);
+            this.accountActionInfoLabel.TabIndex = 18;
+            // 
+            // customerActionInfoLabel
+            // 
+            this.customerActionInfoLabel.AutoSize = true;
+            this.customerActionInfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customerActionInfoLabel.ForeColor = System.Drawing.Color.Lime;
+            this.customerActionInfoLabel.Location = new System.Drawing.Point(50, 269);
+            this.customerActionInfoLabel.Name = "customerActionInfoLabel";
+            this.customerActionInfoLabel.Size = new System.Drawing.Size(0, 20);
+            this.customerActionInfoLabel.TabIndex = 19;
+            // 
             // CustomerInformationUi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -389,6 +428,9 @@
         private System.Windows.Forms.TextBox amountTextBox;
         private System.Windows.Forms.TextBox accountNumberTextBox;
         private System.Windows.Forms.RichTextBox displayRichTextBox;
+        private System.Windows.Forms.Label accountNumberLabel;
+        private System.Windows.Forms.Label customerActionInfoLabel;
+        private System.Windows.Forms.Label accountActionInfoLabel;
     }
 }
 
